@@ -16,15 +16,15 @@ services:
 
         environment:
             - LOG_FILES=true
-            - LOG_SYSLOG=false
+            - LOG_SYSLOG=true
             - EXCLUDE=docker-logger
             - MAX_FILES=10
             - MAX_SIZE=50
             - MAX_AGE=20
             - DEBUG=false
-#            - TIME_ZONE=America/Chicago
+            - TIME_ZONE=America/Los_Angeles
+            - SYSLOG_HOST=${SYSLOG_HOST}
 
         volumes:
-            - ./logs:/srv/logs
+            - ${APPDATA_LOCATION}/docker-logger/${INSTANCE_NAME}:/srv/logs
             - /var/run/docker.sock:/var/run/docker.sock
-       
